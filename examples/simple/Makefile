@@ -24,5 +24,5 @@ help:
 
 .PHONY: docs
 docs:
-	$(MAKE) -f ../Makefile $@
+	$(MAKE) -f ../../Makefile $@
 

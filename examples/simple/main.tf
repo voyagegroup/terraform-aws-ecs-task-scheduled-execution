@@ -1,5 +1,5 @@
 module "ecs_task_scheduled_execution" {
-  source                               = "../"
+  source                               = "../.."
   name                                 = var.name
   cluster_name                         = aws_ecs_cluster.this.name
   ecs_task_definetion_family           = aws_ecs_task_definition.this.family

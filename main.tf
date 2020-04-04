@@ -2,6 +2,7 @@ resource "aws_cloudwatch_event_rule" "this" {
   name                = var.name
   description         = var.cloudwatch_event_description
   schedule_expression = var.cloudwatch_event_schedule_expression
+  is_enabled          = var.enabled
   tags                = var.tags
 }
 

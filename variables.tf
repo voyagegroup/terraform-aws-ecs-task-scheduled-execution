@@ -3,6 +3,12 @@ variable "name" {
   type        = string
 }
 
+variable "enabled" {
+  description = "The boolean flag whether this execution is enabled or not. No execution when set to false."
+  type        = bool
+  default     = true
+}
+
 variable "cluster_name" {
   description = "ECS Fargate Cluster name."
   type        = string
