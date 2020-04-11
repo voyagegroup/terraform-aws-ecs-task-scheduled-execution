@@ -1,4 +1,4 @@
-module "ecs_task_scheduled_execution" {
+module ecs_task_scheduled_execution {
   source                               = "../.."
   name                                 = var.name
   cluster_name                         = aws_ecs_cluster.this.name

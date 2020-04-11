@@ -1,19 +1,19 @@
-variable "profile" {
+variable profile {
   type        = string
   description = "AWS Credential profile name"
 }
 
-variable "name" {
+variable name {
   type    = string
   default = "EcsTaskScheduledExecution"
 }
 
-variable "region" {
+variable region {
   type    = string
   default = "ap-northeast-1"
 }
 
-variable "vpc_azs" {
+variable vpc_azs {
   type    = list(string)
   default = ["ap-northeast-1a"]
 }
