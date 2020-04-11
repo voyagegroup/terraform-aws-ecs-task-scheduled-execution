@@ -2,6 +2,8 @@
 
 ![Terraform](https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/workflows/Terraform/badge.svg)
 
+[Terraform Registry](https://registry.terraform.io/modules/voyagegroup/ecs-task-scheduled-execution/aws)
+
 A terraform module to set up your ECS task the scheduled execution. If ECS task get failed retry until success.
 
 ![](https://raw.githubusercontent.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/master/docs/draw-io.png)
