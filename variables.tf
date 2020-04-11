@@ -57,7 +57,7 @@ variable "sfn_iam_role_name" {
 }
 
 variable "sfn_comment" {
-  description = "StepFunctions StateMachine comment"
+  description = "StepFunctions StateMachine comment."
   type        = string
   default     = "ECS Task run."
 }
@@ -93,7 +93,7 @@ variable "ecs_task_ignore_retry_errors" {
 }
 
 variable "tags" {
-  description = "A map of tags to add to all resources"
+  description = "A map of tags to add to all resources."
   type        = map(string)
   default     = {}
 }

@@ -42,8 +42,8 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 | ecs\_task\_retry\_interval\_seconds | An integer that represents the number of seconds before the first retry attempt. | `number` | `60` | no |
 | ecs\_task\_retry\_max\_attemps | A positive integer that represents the maximum number of retry attempts. If the error recurs more times than specified, retries cease and normal error handling resumes. A value of 0 specifies that the error or errors are never retried. | `number` | `5` | no |
 | enabled | The boolean flag whether this execution is enabled or not. No execution when set to false. | `bool` | `true` | no |
-| sfn\_comment | StepFunctions StateMachine comment | `string` | `"ECS Task run."` | no |
-| tags | A map of tags to add to all resources | `map(string)` | `{}` | no |
+| sfn\_comment | StepFunctions StateMachine comment. | `string` | `"ECS Task run."` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
 
