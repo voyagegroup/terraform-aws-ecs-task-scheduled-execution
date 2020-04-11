@@ -1,3 +1,13 @@
+# terraform-ecs-task-scheduled-execution
+
+A terraform module to set up your ECS task the scheduled execution. If ECS task get failed retry until success.
+
+![](./docs/draw-io.png)
+
+## Usage
+
+[examples](./examples)
+
 ## Requirements
 
 | Name | Version |
