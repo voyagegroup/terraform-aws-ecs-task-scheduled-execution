@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_event_rule" "this" {
+resource aws_cloudwatch_event_rule this {
   name                = var.name
   description         = var.cloudwatch_event_description
   schedule_expression = var.cloudwatch_event_schedule_expression
@@ -6,11 +6,11 @@ resource "aws_cloudwatch_event_rule" "this" {
   tags                = var.tags
 }
 
-data "aws_iam_role" "cloudwatch_event" {
+data aws_iam_role cloudwatch_event {
   name = var.cloudwatch_event_role_name
 }
 
-resource "aws_cloudwatch_event_target" "this" {
+resource aws_cloudwatch_event_target this {
   rule      = aws_cloudwatch_event_rule.this.name
   target_id = aws_cloudwatch_event_rule.this.name
   role_arn  = data.aws_iam_role.cloudwatch_event.arn
@@ -20,11 +20,11 @@ resource "aws_cloudwatch_event_target" "this" {
   depends_on = [aws_cloudwatch_event_rule.this]
 }
 
-data "aws_iam_role" "sfn" {
+data aws_iam_role sfn {
   name = var.sfn_iam_role_name
 }
 
-data "aws_ecs_task_definition" "this" {
+data aws_ecs_task_definition this {
   task_definition = var.ecs_task_definetion_family
 }
 
@@ -32,7 +32,7 @@ locals {
   assign_public_ip = var.assign_public_ip == true ? "ENABLED" : "DISABLED"
 }
 
-resource "aws_sfn_state_machine" "this" {
+resource aws_sfn_state_machine this {
   name     = var.name
   role_arn = data.aws_iam_role.sfn.arn
   tags     = var.tags
