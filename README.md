@@ -51,8 +51,8 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 
 | Name | Description |
 |------|-------------|
-| cloudwatch\_event\_rule\_arn | CloudWatch Event Rule Arn |
-| cloudwatch\_event\_target\_arn | CloudWatch Event Target Arn |
-| sfn\_state\_machine\_name | StepFunctions StateMachine name |
+| cloudwatch\_event\_rule\_arn | CloudWatch Event Rule Arn. |
+| cloudwatch\_event\_target\_arn | CloudWatch Event Target Arn. |
+| sfn\_state\_machine\_name | StepFunctions StateMachine name. |
 
 
