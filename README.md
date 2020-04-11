@@ -1,12 +1,16 @@
 # terraform-ecs-task-scheduled-execution
 
+![Terraform](https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/workflows/Terraform/badge.svg)
+
+[Terraform Registry](https://registry.terraform.io/modules/voyagegroup/ecs-task-scheduled-execution/aws)
+
 A terraform module to set up your ECS task the scheduled execution. If ECS task get failed retry until success.
 
-![](./docs/draw-io.png)
+![](https://raw.githubusercontent.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/master/docs/draw-io.png)
 
 ## Usage
 
-[examples](./examples)
+[examples](https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/tree/master/examples/simple)
 
 ## Requirements
 
@@ -40,14 +44,15 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 | ecs\_task\_retry\_interval\_seconds | An integer that represents the number of seconds before the first retry attempt. | `number` | `60` | no |
 | ecs\_task\_retry\_max\_attemps | A positive integer that represents the maximum number of retry attempts. If the error recurs more times than specified, retries cease and normal error handling resumes. A value of 0 specifies that the error or errors are never retried. | `number` | `5` | no |
 | enabled | The boolean flag whether this execution is enabled or not. No execution when set to false. | `bool` | `true` | no |
-| sfn\_comment | StepFunctions StateMachine comment | `string` | `"ECS Task run."` | no |
-| tags | A map of tags to add to all resources | `map(string)` | `{}` | no |
+| sfn\_comment | StepFunctions StateMachine comment. | `string` | `"ECS Task run."` | no |
+| tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cloudwatch\_event\_rule\_arn | n/a |
-| cloudwatch\_event\_target\_arn | n/a |
-| sfn\_state\_machine\_name | n/a |
+| cloudwatch\_event\_rule\_arn | CloudWatch Event Rule Arn |
+| cloudwatch\_event\_target\_arn | CloudWatch Event Target Arn |
+| sfn\_state\_machine\_name | StepFunctions StateMachine name |
+
 
