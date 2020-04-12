@@ -10,11 +10,11 @@ $ make apply
 ```console
 $ make plan
 ...
-Error: Error creating Step Function State Machine: AccessDeniedException: Neither the global service principal states.amazonaws.com, nor the regional one is authorized to assume the provided role.
-	status code: 400, request id: xxxx-xxxx-xxxx-xxxx-xxxx
+Error: Error creating Step Function State Machine: AccessDeniedException: 'arn:aws:iam::851669633371:role/EcsTaskScheduledExecutionStepFunction' is not authorized to create managed-rule.
+        status code: 400, request id: 192e3d83-c9c2-41b4-b584-093835a9067d
 
-  on ../main.tf line 30, in resource "aws_sfn_state_machine" "this":
-  30: resource "aws_sfn_state_machine" "this" {
+  on ../../main.tf line 37, in resource "aws_sfn_state_machine" "this":
+  37: resource aws_sfn_state_machine this {
 
 
 make: *** [apply] Error 1

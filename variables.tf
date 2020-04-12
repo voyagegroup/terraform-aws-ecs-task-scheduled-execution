@@ -92,6 +92,12 @@ variable ecs_task_ignore_retry_errors {
   default     = ["States.Permissions"]
 }
 
+variable sfn_ecs_container_override {
+  description = "A JSON string ContinerOverride settings."
+  type        = string
+  default     = "{}"
+}
+
 variable tags {
   description = "A map of tags to add to all resources."
   type        = map(string)

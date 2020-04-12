@@ -24,11 +24,14 @@ resource aws_ecs_task_definition this {
 {
     "name": "${var.name}",
     "command": [
-        "echo helloworld"
+        "echo $EXECUTION_TIME; echo $ENVIROMENT;"
     ],
     "entryPoint": [
         "sh",
         "-c"
+    ],
+    "environment": [
+        {"name": "ENVIROMENT", "value": "prod"}
     ],
     "image": "alpine:latest",
     "logConfiguration": {

@@ -14,10 +14,12 @@ resource aws_cloudwatch_event_target this {
   rule      = aws_cloudwatch_event_rule.this.name
   target_id = aws_cloudwatch_event_rule.this.name
   role_arn  = data.aws_iam_role.cloudwatch_event.arn
-  input     = "{}"
   arn       = aws_sfn_state_machine.this.id
 
-  depends_on = [aws_cloudwatch_event_rule.this]
+  depends_on = [
+    aws_cloudwatch_event_rule.this,
+    aws_sfn_state_machine.this
+  ]
 }
 
 data aws_iam_role sfn {
@@ -45,11 +47,13 @@ resource aws_sfn_state_machine this {
     "Run": {
       "Type": "Task",
       "End": true,
+      "InputPath": "$",
       "Resource": "arn:aws:states:::ecs:runTask.sync",
       "Parameters": {
         "LaunchType": "FARGATE",
         "Cluster": "${var.cluster_name}",
-        "TaskDefinition": "${data.aws_ecs_task_definition.this.id}",
+        "TaskDefinition": "${data.aws_ecs_task_definition.this.family}",
+        "Overrides": ${var.sfn_ecs_container_override},
         "NetworkConfiguration": {
           "AwsvpcConfiguration": {
             "SecurityGroups": ${jsonencode(var.security_groups)},
