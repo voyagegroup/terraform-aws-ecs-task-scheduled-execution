@@ -26,7 +26,7 @@ resource aws_iam_role_policy_attachment ecs_task_attachment_policy {
 ### CloudWatch Event Role
 
 resource aws_iam_role cloudwatch_event {
-  name               = "${var.name}CloudWatchEvent"
+  name               = "StartExecutionStepFunctionCloudWatchEvent"
   assume_role_policy = data.aws_iam_policy_document.cloudwatch_event_assume_role_policy.json
 }
 
@@ -46,15 +46,11 @@ resource aws_iam_role_policy cloudwatch_event_policy {
   policy = data.aws_iam_policy_document.cloudwatch_event_policy.json
 }
 
-data aws_sfn_state_machine sfn {
-  name = module.ecs_task_scheduled_execution.sfn_state_machine_name
-}
-
 data aws_iam_policy_document cloudwatch_event_policy {
   statement {
     actions = ["states:StartExecution"]
 
-    resources = [data.aws_sfn_state_machine.sfn.id]
+    resources = ["*"]
   }
 }
 
@@ -97,7 +93,7 @@ data aws_iam_policy_document sfn_policy {
       "ecs:StopTask",
       "ecs:DescribeTasks"
     ]
-    resources = [aws_ecs_task_definition.this.arn]
+    resources = ["arn:aws:ecs:${var.region}:${data.aws_caller_identity.current.account_id}:task-definition/${aws_ecs_task_definition.this.family}"]
   }
 
   statement {
