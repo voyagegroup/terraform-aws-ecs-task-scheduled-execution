@@ -48,6 +48,7 @@ resource aws_sfn_state_machine this {
       "Type": "Task",
       "End": true,
       "InputPath": "$",
+      "TimeoutSeconds": ${var.sfn_timeout_seconds},
       "Resource": "arn:aws:states:::ecs:runTask.sync",
       "Parameters": {
         "LaunchType": "FARGATE",

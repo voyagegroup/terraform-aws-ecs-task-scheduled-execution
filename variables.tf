@@ -98,6 +98,12 @@ variable sfn_ecs_container_override {
   default     = "{}"
 }
 
+variable "sfn_timeout_seconds" {
+  description = "If the task runs longer than the specified second the task takes a timeout to fail."
+  type        = number
+  default     = 99999999
+}
+
 variable tags {
   description = "A map of tags to add to all resources."
   type        = map(string)
