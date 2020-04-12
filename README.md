@@ -46,6 +46,7 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 | enabled | The boolean flag whether this execution is enabled or not. No execution when set to false. | `bool` | `true` | no |
 | sfn\_comment | StepFunctions StateMachine comment. | `string` | `"ECS Task run."` | no |
 | sfn\_ecs\_container\_override | A JSON string ContinerOverride settings. | `string` | `"{}"` | no |
+| sfn\_timeout\_seconds | If the task runs longer than the specified second the task takes a timeout to fail. | `number` | `99999999` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
