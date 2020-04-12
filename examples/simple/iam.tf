@@ -75,11 +75,6 @@ data aws_iam_policy_document sfn_assume_role_policy {
   }
 }
 
-resource aws_iam_role_policy_attachment sfn_attachment_policy {
-  role       = aws_iam_role.sfn.id
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-}
-
 resource aws_iam_role_policy sfn_policy {
   role   = aws_iam_role.sfn.id
   policy = data.aws_iam_policy_document.sfn_policy.json
