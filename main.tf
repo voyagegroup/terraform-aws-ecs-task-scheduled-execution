@@ -79,4 +79,25 @@ resource aws_sfn_state_machine this {
   }
 }
 EOF
+
+  depends_on = [
+    null_resource.delay,
+  ]
+}
+
+# Initial run will fail due to the timing issue
+# aws_sfn_state_machine.this : Error creating Step Function State Machine:
+# AccessDeniedException: Neither the global service principal states.amazonaws.com,
+# nor the regional one is authorized to assume the provided role.
+# https://github.com/hashicorp/terraform/issues/2869
+# Therefore wait 10 seconds
+# https://github.com/hashicorp/terraform/issues/17726#issuecomment-377357866
+resource "null_resource" "delay" {
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
+
+  triggers = {
+    "before" = data.aws_iam_role.sfn.id
+  }
 }
