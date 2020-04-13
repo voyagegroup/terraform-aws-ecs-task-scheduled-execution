@@ -1,16 +1,16 @@
-# terraform-ecs-task-scheduled-execution
+# terraform-aws-ecs-fargate-task-scheduled-execution
 
-![Terraform](https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/workflows/Terraform/badge.svg)
+![Terraform](https://github.com/voyagegroup/terraform-aws-ecs-fargate-task-scheduled-execution/workflows/Terraform/badge.svg)
 
 [Terraform Registry](https://registry.terraform.io/modules/voyagegroup/ecs-task-scheduled-execution/aws)
 
 A terraform module to set up your ECS task the scheduled execution. If ECS task get failed retry until success.
 
-![](https://raw.githubusercontent.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/master/docs/draw-io.png)
+![](https://raw.githubusercontent.com/voyagegroup/terraform-aws-ecs-fargate-task-scheduled-execution/master/docs/draw-io.png)
 
 ## Usage
 
-[examples](https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/tree/master/examples/simple)
+[examples](https://github.com/voyagegroup/terraform-aws-ecs-fargate-task-scheduled-execution/tree/master/examples/simple)
 
 ## Requirements
 
