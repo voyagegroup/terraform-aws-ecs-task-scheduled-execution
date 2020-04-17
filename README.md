@@ -38,6 +38,7 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 | subnets | Specify the subnet on which to run ECS Fargate. | `list(string)` | n/a | yes |
 | assign\_public\_ip | Choose whether to have your tasks receive a public IP address. If you are using Fargate tasks, in order for the task to pull the container image it must either use a public subnet and be assigned a public IP address or a private subnet that has a route to the internet or a NAT gateway that can route requests to the internet. | `bool` | `false` | no |
 | cloudwatch\_event\_description | CloudWatch Event Description. | `string` | `"Invoke ECS Retry StepFunction StateMachine."` | no |
+| ecs\_task\_definetion\_family\_revision | ECS Fargate Task Definition family revision. | `string` | `null` | no |
 | ecs\_task\_ignore\_retry\_errors | The errors you do not want to retry. | `list(string)` | <pre>[<br>  "States.Permissions"<br>]</pre> | no |
 | ecs\_task\_need\_retry\_errors | The errors you want to retry. | `list(string)` | <pre>[<br>  "States.TaskFailed",<br>  "States.Timeout"<br>]</pre> | no |
 | ecs\_task\_retry\_backoff\_rate | The multiplier by which the retry interval increases during each attempt. | `number` | `2` | no |
