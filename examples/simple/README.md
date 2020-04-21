@@ -7,7 +7,7 @@ $ make apply
 
 ### If you found this error.
 
-issue: https://github.com/voyagegroup/terraform-aws-ecs-fargate-task-scheduled-execution/pull/11#issuecomment-612590392
+issue: https://github.com/voyagegroup/terraform-aws-ecs-task-scheduled-execution/pull/11#issuecomment-612590392
 
 ```console
 $ make plan
