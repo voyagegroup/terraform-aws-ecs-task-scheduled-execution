@@ -57,6 +57,30 @@ variable cloudwatch_event_role_name {
   type        = string
 }
 
+
+variable "cloudwatch_event_input" {
+  description = "Valid JSON text passed to the target."
+  default     = null
+  type        = string
+}
+
+variable "cloudwatch_event_input_path" {
+  description = "The value of the JSONPath that is used for extracting part of the matched event when passing it to the target."
+  default     = null
+  type        = string
+}
+
+variable "cloudwatch_event_input_transformer" {
+  description = "Parameters used when you are providing a custom input to a target based on certain event data."
+  type = set(object(
+    {
+      input_paths    = map(string)
+      input_template = string
+    }
+  ))
+  default = []
+}
+
 variable sfn_iam_role_name {
   description = "StateMachine IAM Role name."
   type        = string

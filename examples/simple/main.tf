@@ -1,3 +1,12 @@
+locals {
+  input_template = <<EOF
+{
+    "region": <region>,
+    "commands": [ echo, <time> ]
+}
+EOF
+}
+
 module ecs_task_scheduled_execution {
   source                               = "../.."
   name                                 = var.name
@@ -9,6 +18,16 @@ module ecs_task_scheduled_execution {
   enabled                              = true
   cloudwatch_event_schedule_expression = "rate(2 minutes)"
 
+  cloudwatch_event_input_transformer = [{
+    input_paths    = { "time" = "$.time", "region" = "$.region" }
+    input_template = <<EOF
+{
+    "commands":["echo", <time>],
+    "region":<region>
+}
+EOF
+  }]
+
   cloudwatch_event_role_name = aws_iam_role.cloudwatch_event.name
   sfn_iam_role_name          = aws_iam_role.sfn.name
   sfn_ecs_container_override = <<JSON
@@ -16,10 +35,11 @@ module ecs_task_scheduled_execution {
   "ContainerOverrides": [
     {
       "Name": "${aws_ecs_task_definition.this.family}",
+      "Command.$": "$.commands",
       "Environment": [
         {
-          "Name": "EXECUTION_TIME",
-          "Value.$": "$.time"
+          "Name": "REGION",
+          "Value.$": "$.region"
         }
       ]
     }
