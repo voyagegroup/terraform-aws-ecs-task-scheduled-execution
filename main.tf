@@ -16,6 +16,17 @@ resource aws_cloudwatch_event_target this {
   role_arn  = data.aws_iam_role.cloudwatch_event.arn
   arn       = aws_sfn_state_machine.this.id
 
+  input      = var.cloudwatch_event_input
+  input_path = var.cloudwatch_event_input_path
+
+  dynamic input_transformer {
+    for_each = var.cloudwatch_event_input_transformer
+    content {
+      input_paths    = input_transformer.value["input_paths"]
+      input_template = input_transformer.value["input_template"]
+    }
+  }
+
   depends_on = [
     aws_cloudwatch_event_rule.this,
     aws_sfn_state_machine.this

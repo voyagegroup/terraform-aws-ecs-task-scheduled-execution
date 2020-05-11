@@ -24,7 +24,8 @@ resource aws_ecs_task_definition this {
 {
     "name": "${var.name}",
     "command": [
-        "echo $EXECUTION_TIME; echo $ENVIROMENT;"
+        "echo",
+        "$ENVIROMENT"
     ],
     "entryPoint": [
         "sh",
