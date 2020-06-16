@@ -14,13 +14,13 @@ variable cluster_name {
   type        = string
 }
 
-variable ecs_task_definetion_family {
-  description = "ECS Fargate Task Definetion family."
+variable ecs_task_definition_family {
+  description = "ECS Fargate Task Definition family."
   type        = string
 }
 
-variable ecs_task_definetion_family_revision {
-  description = "ECS Fargate Task Definetion family revision."
+variable ecs_task_definition_family_revision {
+  description = "ECS Fargate Task Definition family revision."
   type        = string
   default     = null
 }
