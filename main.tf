@@ -38,7 +38,6 @@ data aws_iam_role sfn {
 }
 
 locals {
-  task_definition  = var.ecs_task_definition_family_revision == null ? var.ecs_task_definition_family : "${var.ecs_task_definition_family}:${var.ecs_task_definition_family_revision}"
   assign_public_ip = var.assign_public_ip == true ? "ENABLED" : "DISABLED"
 }
 
@@ -61,7 +60,7 @@ resource aws_sfn_state_machine this {
       "Parameters": {
         "LaunchType": "FARGATE",
         "Cluster": "${var.cluster_name}",
-        "TaskDefinition": "${local.task_definition}",
+        "TaskDefinition": "${var.ecs_task_definition_family}",
         "Overrides": ${var.sfn_ecs_container_override},
         "NetworkConfiguration": {
           "AwsvpcConfiguration": {
