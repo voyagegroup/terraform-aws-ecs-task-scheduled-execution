@@ -1,12 +1,3 @@
-locals {
-  input_template = <<EOF
-{
-    "region": <region>,
-    "commands": [ echo, <time> ]
-}
-EOF
-}
-
 module ecs_task_scheduled_execution {
   source                               = "../.."
   name                                 = var.name
