@@ -92,6 +92,12 @@ variable sfn_comment {
   default     = "ECS Task run."
 }
 
+variable ecs_launch_type {
+  description = "ECS task launch type."
+  type        = string
+  default     = "FARGATE"
+}
+
 variable ecs_task_need_retry_errors {
   description = "The errors you want to retry."
   type        = list(string)

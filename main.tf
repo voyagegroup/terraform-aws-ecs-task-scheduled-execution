@@ -58,7 +58,7 @@ resource aws_sfn_state_machine this {
       "TimeoutSeconds": ${var.sfn_timeout_seconds},
       "Resource": "arn:aws:states:::ecs:runTask.sync",
       "Parameters": {
-        "LaunchType": "FARGATE",
+        "LaunchType": "${var.ecs_launch_type}",
         "Cluster": "${var.cluster_name}",
         "TaskDefinition": "${var.ecs_task_definition_family}",
         "Overrides": ${var.sfn_ecs_container_override},
