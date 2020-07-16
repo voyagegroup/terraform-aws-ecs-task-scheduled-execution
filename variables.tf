@@ -19,12 +19,6 @@ variable ecs_task_definition_family {
   type        = string
 }
 
-variable ecs_task_definition_family_revision {
-  description = "ECS Fargate Task Definition family revision."
-  type        = string
-  default     = null
-}
-
 variable subnets {
   description = "Specify the subnet on which to run ECS Fargate."
   type        = list(string)
