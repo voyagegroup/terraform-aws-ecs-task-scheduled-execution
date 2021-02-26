@@ -92,6 +92,12 @@ variable "ecs_launch_type" {
   default     = "FARGATE"
 }
 
+variable "ecs_fargate_platform_version" {
+  description = "ECS Fargate platform versions"
+  type        = string
+  default     = "LATEST"
+}
+
 variable "ecs_task_need_retry_errors" {
   description = "The errors you want to retry."
   type        = list(string)

@@ -39,6 +39,7 @@ data "aws_iam_role" "sfn" {
 
 locals {
   assign_public_ip = var.assign_public_ip == true ? "ENABLED" : "DISABLED"
+  ecs_fargate_platform_version = var.ecs_launch_type == "FARGATE" ? "\"PlatformVersion\": \"${var.ecs_fargate_platform_version}\"," : ""
 }
 
 resource "aws_sfn_state_machine" "this" {
@@ -62,6 +63,7 @@ resource "aws_sfn_state_machine" "this" {
         "Cluster": "${var.cluster_name}",
         "TaskDefinition": "${var.ecs_task_definition_family}",
         "Overrides": ${var.sfn_ecs_container_override},
+        ${local.ecs_fargate_platform_version}
         "NetworkConfiguration": {
           "AwsvpcConfiguration": {
             "SecurityGroups": ${jsonencode(var.security_groups)},
