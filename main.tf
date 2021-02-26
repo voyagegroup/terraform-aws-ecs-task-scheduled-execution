@@ -38,7 +38,7 @@ data "aws_iam_role" "sfn" {
 }
 
 locals {
-  assign_public_ip = var.assign_public_ip == true ? "ENABLED" : "DISABLED"
+  assign_public_ip             = var.assign_public_ip == true ? "ENABLED" : "DISABLED"
   ecs_fargate_platform_version = var.ecs_launch_type == "FARGATE" ? "\"PlatformVersion\": \"${var.ecs_fargate_platform_version}\"," : ""
 }
 
