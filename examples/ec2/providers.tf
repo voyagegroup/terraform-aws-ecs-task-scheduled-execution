@@ -1,5 +1,5 @@
 provider aws {
-  version = "2.67.0"
+  version = "3.29.1"
   region  = var.region
   profile = var.profile
 }
