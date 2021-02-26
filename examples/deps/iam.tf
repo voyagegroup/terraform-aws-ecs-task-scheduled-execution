@@ -76,8 +76,8 @@ data "aws_iam_policy_document" "sfn_policy" {
   }
 
   statement {
-    effect  = "Allow"
-    actions = ["iam:PassRole"]
+    effect    = "Allow"
+    actions   = ["iam:PassRole"]
     resources = ["*"]
   }
 }
