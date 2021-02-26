@@ -10,6 +10,7 @@ module "ecs_task_scheduled_execution" {
   cloudwatch_event_schedule_expression = "rate(2 minutes)"
   ecs_launch_type                      = "EC2"
 
-  cloudwatch_event_role_name = aws_iam_role.cloudwatch_event.name
-  sfn_iam_role_name          = aws_iam_role.sfn.name
+  // need examples/deps apply
+  cloudwatch_event_role_name = "StartExecutionStepFunctionCloudWatchEvent"
+  sfn_iam_role_name          = "EcsTaskScheduledExecutionStepFunction"
 }

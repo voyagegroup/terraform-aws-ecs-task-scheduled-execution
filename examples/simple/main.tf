@@ -19,8 +19,10 @@ module "ecs_task_scheduled_execution" {
 EOF
   }]
 
-  cloudwatch_event_role_name = aws_iam_role.cloudwatch_event.name
-  sfn_iam_role_name          = aws_iam_role.sfn.name
+  // need examples/deps apply
+  cloudwatch_event_role_name = "StartExecutionStepFunctionCloudWatchEvent"
+  sfn_iam_role_name          = "EcsTaskScheduledExecutionStepFunction"
+
   sfn_ecs_container_override = <<JSON
 {
   "ContainerOverrides": [

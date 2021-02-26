@@ -42,6 +42,7 @@ A terraform module to set up your ECS task the scheduled execution. If ECS task 
 | cloudwatch\_event\_input\_path | The value of the JSONPath that is used for extracting part of the matched event when passing it to the target. | `string` | `null` | no |
 | cloudwatch\_event\_input\_transformer | Parameters used when you are providing a custom input to a target based on certain event data. | <pre>set(object(<br>    {<br>      input_paths    = map(string)<br>      input_template = string<br>    }<br>  ))</pre> | `[]` | no |
 | ecs\_launch\_type | ECS task launch type. | `string` | `"FARGATE"` | no |
+| ecs\_fargate\_platform\_version | ECS Fargate platform versions | `string` | `"LATEST"` | no |
 | ecs\_task\_ignore\_retry\_errors | The errors you do not want to retry. | `list(string)` | <pre>[<br>  "States.Permissions"<br>]</pre> | no |
 | ecs\_task\_need\_retry\_errors | The errors you want to retry. | `list(string)` | <pre>[<br>  "States.TaskFailed",<br>  "States.Timeout"<br>]</pre> | no |
 | ecs\_task\_retry\_backoff\_rate | The multiplier by which the retry interval increases during each attempt. | `number` | `2` | no |
