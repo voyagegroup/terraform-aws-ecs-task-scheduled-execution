@@ -1,0 +1,40 @@
+# .github/workflows/actions.lock がワークフローとずれている、またはロックした commit が
+# upstream で検証できないときに失敗させる。
+# lockfile の生成・更新は手元で `gh actions-lock` を実行する（https://gh.io/actions-lockfile）。
+# 上流のタグが履歴の続きへ付け替えられても、ランナーは lockfile の commit を実行してジョブは成功する。
+# それに気づけるのはこの検証だけなので、PR が無い日も schedule で回す。
+# 落ちても `gh actions-lock --relock` をすぐ実行しない。攻撃中なら悪性の commit をロックしてしまう。
+name: verify-actions-lock
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "15 0 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-actions-lock:
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - run: gh extension install github/gh-actions-lock --pin v0.4.0
+      - run: gh actions-lock --verify
+      # PR や push で落ちたときは実行した人が気づけるが、schedule の失敗は workflow を作った人にしか通知されない
+      - name: Notify Slack
+        if: failure() && github.event_name == 'schedule'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          jq -n --arg text ":x: ${GITHUB_REPOSITORY} の actions.lock の検証が失敗した: ${RUN_URL}" '{text: $text}' |
+            curl -sSf -X POST -H 'Content-Type: application/json' --data @- "$SLACK_WEBHOOK_URL"
